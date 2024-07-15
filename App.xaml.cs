@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace JobTimer
+namespace LucidTimer
 {
     /// <summary>
     /// Interaction logic for App.xaml

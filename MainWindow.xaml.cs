@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Media.Imaging;
 using System.IO;
 
-namespace JobTimer
+namespace LucidTimer
 {
     public partial class MainWindow : Window
     {
@@ -99,9 +99,15 @@ namespace JobTimer
                     mainTimerHours++;
                 }
             }
-            tbMainTimerSeconds.Text = mainTimerSeconds.ToString();
-            tbMainTimerMinutes.Text = mainTimerMinutes.ToString();
-            tbMainTimerHours.Text = mainTimerHours.ToString();
+            string secondsToEnter, minutesToEnter, hoursToEnter;
+
+            secondsToEnter = mainTimerSeconds < 10 ? "0" + mainTimerSeconds.ToString() : mainTimerSeconds.ToString();
+            minutesToEnter = mainTimerMinutes < 10 ? "0" + mainTimerMinutes.ToString() : mainTimerMinutes.ToString();
+            hoursToEnter = mainTimerHours < 10 ? "0" + mainTimerHours.ToString() : mainTimerHours.ToString();
+
+            tbMainTimerSeconds.Text = secondsToEnter;
+            tbMainTimerMinutes.Text = minutesToEnter;
+            tbMainTimerHours.Text = hoursToEnter;
         }
 
 
