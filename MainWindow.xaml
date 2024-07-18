@@ -14,16 +14,29 @@
         <TextBlock Name="tbMainTimerMinutes" FontSize="56" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0 40 0 0" Foreground="#FF8EC4FF" FontFamily="Arial Black">00</TextBlock>
         <TextBlock FontSize="56" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="100 35 0 0" Foreground="#FF8EC4FF" FontFamily="Arial Black">:</TextBlock>
         <TextBlock Name="tbMainTimerSeconds" FontSize="56" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="200 40 0 0" Foreground="#FF8EC4FF" FontFamily="Arial Black">00</TextBlock>
-        <Border BorderBrush="#FF8EC4FF" BorderThickness="2" CornerRadius="8" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 0 20">
+        <Border BorderBrush="#FF8EC4FF" BorderThickness="2" CornerRadius="8" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0 0 140 20">
             <Button
-            Name="StartTimer"
-            Width="200"
-            Height="50"
-            FontSize="30"
+            Name="bStartTimer"
+            Width="120"
+            Height="40"
+            FontSize="24"
             FontFamily="Arial Bold"
             Cursor="Hand"
-            Click="StartTimer_Click" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}">
+            Click="StartTimer_Click" Background="{x:Null}" Foreground="#FFC2DFFF" BorderBrush="{x:Null}">
                 Старт
+            </Button>
+        </Border>
+        <Border BorderBrush="#FFFF5959" BorderThickness="2" CornerRadius="8" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="140 0 0 20">
+            <Button
+            Name="bResetTimer"
+            Width="120"
+            Height="40"
+            FontSize="24"
+            FontFamily="Arial Bold"
+            Cursor="Hand"
+            Click="bResetTimer_Click" Background="{x:Null}" Foreground="#FFFF9393" BorderBrush="{x:Null}">
+                Сброс
+
             </Button>
         </Border>
 

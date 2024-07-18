@@ -11,18 +11,23 @@ namespace LucidTimer
 {
     public partial class MainWindow : Window
     {
+        TimeManager mainTimeManager;
         private readonly DispatcherTimer mainTimer = new DispatcherTimer();
+
         private System.Windows.Forms.NotifyIcon trayIcon = new System.Windows.Forms.NotifyIcon();
-     
-        private int mainTimerSeconds = 0;
-        private int mainTimerMinutes = 0;
-        private int mainTimerHours = 0;
-        private bool isTimerStarted = false;
+
         public MainWindow()
         {
             InitializeComponent();
-            InitializeTimerData();
             InitializeTrayIcon();
+            mainTimeManager = new TimeManager
+            {
+                TimerInstance = mainTimer,
+                SecondsTextField = tbMainTimerSeconds,
+                MinutesTextField = tbMainTimerMinutes,
+                HoursTextField = tbMainTimerHours
+            };
+            mainTimeManager.InitializeTimer();
         }
         protected override void OnStateChanged(EventArgs e)
         {
@@ -50,12 +55,6 @@ namespace LucidTimer
             }
 
         }
-        private void InitializeTimerData()
-        {
-            mainTimer.Tick += new EventHandler(MainTimer_Tick);
-            mainTimer.Interval = new TimeSpan(0, 0, 1);
-        }
-
         private void InitializeTrayIcon()
         {
             string projectPath = System.IO.Path.GetFullPath(@"..\..\..\");
@@ -73,43 +72,12 @@ namespace LucidTimer
 
         private void StartTimer_Click(object sender, RoutedEventArgs e)
         {
-            if(!isTimerStarted)
-            {
-                mainTimer.Start();
-                isTimerStarted = true;
-                StartTimer.Content = "Стоп";
-            } else
-            {
-                mainTimer.Stop();
-                isTimerStarted = false;
-                StartTimer.Content = "Старт";
-            }
+            mainTimeManager.ToggleTimer(bStartTimer);
         }
 
-        private void MainTimer_Tick(object? sender, EventArgs e)
-        { 
-            mainTimerSeconds++;
-            if (mainTimerSeconds == 60)
-            {
-                mainTimerSeconds = 0;
-                mainTimerMinutes++;
-                if (mainTimerMinutes == 60)
-                {
-                    mainTimerMinutes = 0;
-                    mainTimerHours++;
-                }
-            }
-            string secondsToEnter, minutesToEnter, hoursToEnter;
-
-            secondsToEnter = mainTimerSeconds < 10 ? "0" + mainTimerSeconds.ToString() : mainTimerSeconds.ToString();
-            minutesToEnter = mainTimerMinutes < 10 ? "0" + mainTimerMinutes.ToString() : mainTimerMinutes.ToString();
-            hoursToEnter = mainTimerHours < 10 ? "0" + mainTimerHours.ToString() : mainTimerHours.ToString();
-
-            tbMainTimerSeconds.Text = secondsToEnter;
-            tbMainTimerMinutes.Text = minutesToEnter;
-            tbMainTimerHours.Text = hoursToEnter;
+        private void bResetTimer_Click(object sender, RoutedEventArgs e)
+        {
+            mainTimeManager.ResetTimer();
         }
-
-
     }
 }
