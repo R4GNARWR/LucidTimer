@@ -1,25 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Threading;
 
 namespace LucidTimer
 {
     internal class TimeManager
     {
-        public TextBlock SecondsTextField { get; set; }
-        public TextBlock MinutesTextField { get; set; }
-        public TextBlock HoursTextField { get; set; }
+        private TextBlock _secondsTextField;
+        public TextBlock SecondsTextField
+        {
+            get { return _secondsTextField; }
+            set { _secondsTextField = value; }
+        }
 
-        public DispatcherTimer TimerInstance { get; set; }
-        public int TimerSeconds { get; private set; }
-        public int TimerMinutes { get; private set; }
-        public int TimerHours { get; private set; }
-        public bool IsTimerStarted { get; private set; }
+        private TextBlock _minutesTextField;
+        public TextBlock MinutesTextField
+        {
+            get { return _minutesTextField; }
+            set { _minutesTextField = value; }
+        }
+
+        private TextBlock _hoursTextField;
+        public TextBlock HoursTextField
+        {
+            get { return _hoursTextField; }
+            set { _hoursTextField = value; }
+        }
+
+        private DispatcherTimer _timerInstance;
+        public DispatcherTimer TimerInstance
+        {
+            get { return _timerInstance; }
+            set { _timerInstance = value; }
+        }
+
+        private int _timerSeconds;
+        public int TimerSeconds
+        {
+            get { return _timerSeconds; }
+            private set { _timerSeconds = value; }
+        }
+
+        private int _timerMinutes;
+        public int TimerMinutes
+        {
+            get { return _timerMinutes; }
+            private set { _timerMinutes = value; }
+        }
+
+        private int _timerHours;
+        public int TimerHours
+        {
+            get { return _timerHours; }
+            private set { _timerHours = value; }
+        }
+
+        private bool _isTimerStarted;
+        public bool IsTimerStarted
+        {
+            get { return _isTimerStarted; }
+            private set { _isTimerStarted = value; }
+        }
 
         public void InitializeTimer()
         {
@@ -49,15 +89,15 @@ namespace LucidTimer
             TimerSeconds = 0;
             TimerMinutes = 0;
             TimerHours = 0;
-            if(SecondsTextField != null)
+            if (SecondsTextField != null)
             {
                 SecondsTextField.Text = "00";
             }
-            if(MinutesTextField != null)
+            if (MinutesTextField != null)
             {
                 MinutesTextField.Text = "00";
             }
-            if(HoursTextField != null)
+            if (HoursTextField != null)
             {
                 HoursTextField.Text = "00";
             }
@@ -86,7 +126,7 @@ namespace LucidTimer
 
             string secondsToEnter, minutesToEnter, hoursToEnter;
 
-            if(SecondsTextField != null)
+            if (SecondsTextField != null)
             {
                 secondsToEnter = TimerSeconds < 10 ? "0" + TimerSeconds.ToString() : TimerSeconds.ToString();
                 SecondsTextField.Text = secondsToEnter;
